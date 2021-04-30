@@ -1,8 +1,13 @@
 import React from "react";
 import { pokemonData } from "../../data/pokemonData";
-import { PokemonSchema, PokemonSpritesSchema, UnpatchedPokemonSchema } from "../../types/PokemonSchema";
+import {
+    PokemonSchema,
+    PokemonSpritesSchema,
+    UnpatchedPokemonSchema,
+} from "../../types/PokemonSchema";
+
 import Pokedex from "../Pokedex/Pokedex";
-import "./App.css"
+import "./App.css";
 
 export interface AppState {
     searchField: string;
@@ -56,33 +61,50 @@ class App extends React.Component<any, AppState> {
         });
     }
 
-    handleInputChange = (inputValue: string)=>{
-        const {allPokemons} = this.state;
-        
+    handleInputChange = (inputValue: string) => {
+        const searchField = inputValue;
+
+        const { allPokemons } = this.state;
+
         const searchedPokemons = allPokemons.filter(
-            (pokemon: PokemonSchema) =>{
+            (pokemon: PokemonSchema) => {
                 return (
-                    pokemon.name && pokemon.name.toLowerCase().includes(inputValue.toLowerCase())
-                )
+                    pokemon.name &&
+                    pokemon.name
+                        .toLowerCase()
+                        .includes(searchField.toLowerCase())
+                );
             }
         );
-        this.setState({
-            searchField: inputValue,
-            searchedPokemons,
-        })
+
+        this.setState({ searchField, searchedPokemons });
     };
 
-     render() {
+    handleClick = (pokemonName: string) => {
+        const { allPokemons } = this.state;
+
+        // Find the selected pokemon from allPokemons
+        const selectedPokemon = allPokemons.find(
+            (pokemon: PokemonSchema) => pokemon.name === pokemonName
+        );
+
+        // Update the state
+        this.setState({ selectedPokemon });
+    };
+
+    render() {
         return (
-        <div className="app">
-            <h1>Pokedex</h1>
-            <Pokedex 
-                searchedPokemons = {this.state.searchedPokemons}
-                onInputChange = {this.handleInputChange}
-            />
-        </div>
-        )
-     }
+            <div className="app">
+                <h1>Pokedex</h1>
+                <Pokedex
+                    searchedPokemons={this.state.searchedPokemons}
+                    onInputChange={this.handleInputChange}
+                    onPokemonClick={this.handleClick}
+                    selectedPokemon={this.state.selectedPokemon}
+                />
+            </div>
+        );
+    }
 }
 
 export default App;

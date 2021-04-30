@@ -5,9 +5,10 @@ import "./PokeList.css"
 
 interface PokeListProps {
     searchedPokemons: PokemonSchema[];
+    onPokemonClick: (pokemonName: string) => void;
 }
 
-const PokeList = ({searchedPokemons}: PokeListProps) => {
+const PokeList = ({searchedPokemons, onPokemonClick}: PokeListProps) => {
     return (
         <div className="pokeList">
             {
@@ -15,6 +16,7 @@ const PokeList = ({searchedPokemons}: PokeListProps) => {
                     return (
                         pokemon.name && (
                         <PokeCard 
+                        onPokemonClick={onPokemonClick}
                             key={pokemon.id}
                             name={pokemon.name}
                             spriteUrl = {pokemon.sprites.normal}
