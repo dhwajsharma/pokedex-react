@@ -1,14 +1,18 @@
 import React from 'react'
+import PokeList from '../PokeList/PokeList'
+import PokeSearchResult from '../PokeSearchResult/PokeSearchResult'
+import SearchBox from '../SearchBox/SearchBox'
 import "./Pokedex.css"
 
 const Pokedex = () => {
     return (
         <div className="pokedex">
                 <div className="pokedex_pokelist">
-                    <p>list of pokemon</p>
+                    <SearchBox />
+                    <PokeList />
                 </div>
                 <div className="pokedex_pokeSearchResult">
-                    <p>Poke search results</p>
+                    <PokeSearchResult />
                 </div>
         </div>
     )
