@@ -1,6 +1,8 @@
 body {
   background-color: #2f3135;
   color: whitesmoke;
+  margin: 0;
+  height: 100%;
 }
 
 .app {
