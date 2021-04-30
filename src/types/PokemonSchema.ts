@@ -1,4 +1,4 @@
-export interface UnpatchedPokemonSchema{
+export interface UnpatchedPokemonSchema {
     id?: string;
     species_id?: string;
     height?: string;
@@ -8,14 +8,14 @@ export interface UnpatchedPokemonSchema{
     is_default?: string;
     name?: string;
     sprites?: string;
-} 
-
-export interface PokemonSpritesSchema{
-    normal?: string;
-    animated?: string;   
 }
 
-export interface PokemonSchema{
+export interface PokemonSpritesSchema {
+    normal?: string;
+    animated?: string;
+}
+
+export interface PokemonSchema {
     id?: string;
     species_id?: string;
     height?: string;
@@ -24,5 +24,5 @@ export interface PokemonSchema{
     order?: string;
     is_default?: string;
     name?: string;
-    sprited: PokemonSpritesSchema;
+    sprites: PokemonSpritesSchema;
 }
